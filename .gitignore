@@ -3,6 +3,7 @@
 **/obj/
 artifacts/
 dist/
+**/node_modules/
 
 # Local IDE and configuration
 .vs/
