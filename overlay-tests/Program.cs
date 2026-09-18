@@ -54,7 +54,7 @@ for(int i=0;i<30;i++) {
 Check(data.GetProperty("contextStatus").GetString()=="ready","remote context loaded");
 Check(data.GetProperty("selectedChallengeId").ValueKind==JsonValueKind.Null,"multiple challenges are not guessed");
 Check((await http.GetStringAsync("/apex")).Contains("data-source=\"live\""),"embedded HTML defaults to actual local data");
-Check((await http.GetStringAsync("/app.mjs")).Contains("liveMode"),"embedded scripts are served");
+Check((await http.GetStringAsync("/app.mjs")).Contains("/api/overlay/state"),"embedded scripts are served");
 async Task<HttpStatusCode> Select(bool trusted) {
     using var request=new HttpRequestMessage(HttpMethod.Post,"/api/overlay/selection") {Content=new StringContent("{\"mapId\":\"map\",\"challengeId\":\"fc\"}",Encoding.UTF8,"application/json")};
     request.Headers.Add("Origin",trusted?$"http://127.0.0.1:{port}":"https://example.test"); request.Headers.Add("X-GoldenLink","overlay");

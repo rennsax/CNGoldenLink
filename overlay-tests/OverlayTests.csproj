@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OverlayPreviewDirectory>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../overlay-preview'))</OverlayPreviewDirectory>
+    <OverlayPreviewDistDirectory>$(OverlayPreviewDirectory)/dist</OverlayPreviewDistDirectory>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="../src/Overlay*.cs" />
     <Compile Include="../src/SyncModels.cs" />
@@ -7,6 +14,13 @@
     <Compile Include="../src/LoopbackAuthorization.cs" />
     <Compile Include="../src/CredentialStore.cs" />
     <Compile Include="../src/NoGoldenBest.cs" />
-    <EmbeddedResource Include="../overlay-preview/public/*" Exclude="../overlay-preview/public/demo.mjs" LogicalName="OverlayAsset.%(Filename)%(Extension)" />
   </ItemGroup>
+  <Target Name="BuildOverlayAssets" BeforeTargets="AssignTargetPaths">
+    <Exec WorkingDirectory="$(OverlayPreviewDirectory)" Command="yarn build" />
+    <ItemGroup>
+      <EmbeddedResource Include="$(OverlayPreviewDistDirectory)/index.html" LogicalName="OverlayAsset.index.html" />
+      <EmbeddedResource Include="$(OverlayPreviewDistDirectory)/app.mjs" LogicalName="OverlayAsset.app.mjs" />
+      <EmbeddedResource Include="$(OverlayPreviewDistDirectory)/style.css" LogicalName="OverlayAsset.style.css" />
+    </ItemGroup>
+  </Target>
 </Project>
