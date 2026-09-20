@@ -43,7 +43,6 @@ const isOrbit = location.pathname === "/orbit";
 const isObs = params.has("obs");
 const isLive =
   document.body.dataset.source === "live" || params.get("source") === "live";
-const heartEnabled = params.get("heart") === "1";
 
 const board = getElement("board");
 const viewport = getElement("viewport");
@@ -84,8 +83,6 @@ function configurePage() {
   document.body.classList.toggle("obs", isObs);
   document.documentElement.classList.toggle("obs-root", isObs);
   board.classList.toggle("orbit", isOrbit);
-  board.classList.toggle("heart-enabled", heartEnabled);
-  getElement("heart-module").hidden = !heartEnabled;
 
   getElement(isOrbit ? "orbit-link" : "apex-link").classList.add("active");
   getElement("edition").textContent = theme.edition;
@@ -95,7 +92,6 @@ function configurePage() {
 
   const obsParams = new URLSearchParams({ obs: "1" });
   if (isLive) obsParams.set("source", "live");
-  if (heartEnabled) obsParams.set("heart", "1");
   getElement("obs-link").href = `${location.pathname}?${obsParams}`;
 }
 
@@ -110,13 +106,15 @@ function updateClock() {
   const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
     .map((part) => String(part).padStart(2, "0"))
     .join(":");
+  const date = now.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const weekday = now.toLocaleDateString("ja-JP", { weekday: "long" });
 
   getElement("current-time").textContent = time;
-  getElement("current-date").textContent = now.toLocaleDateString("zh-CN", {
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "short",
-  });
+  getElement("current-date").textContent = `${date} ${weekday}`;
 }
 
 function createChallengeControls() {
@@ -204,8 +202,8 @@ function renderStatus() {
       : data.live.paused
         ? "已暂停"
         : data.live.holdingGolden
-          ? "炼"
-          : "练",
+          ? "炼！"
+          : "练？",
   );
 }
 
@@ -223,7 +221,7 @@ function renderMapDetails() {
 
 function renderGoldenPb() {
   const { cct, live } = data;
-  getElement("golden-pb-block").hidden = !live.holdingGolden;
+  /* getElement("golden-pb-block").hidden = !live.holdingGolden; */
 
   for (const [id, indexField, nameField] of GOLDEN_PB_FIELDS) {
     const index = cct[indexField];
@@ -286,8 +284,8 @@ function render() {
   demoButtons.forEach((button) => (button.disabled = false));
   renderStatus();
   renderMapDetails();
-  renderGoldenPb();
   renderTelemetry();
+  renderGoldenPb();
   renderStateLine();
   renderButtonStates();
 }
