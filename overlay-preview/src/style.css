@@ -146,14 +146,15 @@ h1 {
 
 /* Shared overlay canvas -------------------------------------------------- */
 
+/* Set --overlay-* on :root in OBS Browser Source Custom CSS to recolor either theme. */
 .board {
-  --ink: #edf6ff;
-  --muted: #7c94ab;
-  --accent: #7cd4f3;
-  --line: #294156;
-  --surface: #101f2e;
-  --canvas: #0a1725;
-  --text-face: "DengXian", "Microsoft YaHei", sans-serif;
+  --ink: var(--overlay-text-face, #edf6ff);
+  --muted: var(--overlay-muted, #7c94ab);
+  --accent: var(--overlay-accent, #7cd4f3);
+  --line: var(--overlay-line, #294156);
+  --surface: var(--overlay-surface, #101f2e);
+  --canvas: var(--overlay-canvas, #0a1725);
+  --text-face: var(--overlay-text-font-family, "DengXian", "Microsoft YaHei", sans-serif);
   --number-face: "Segoe UI", "DengXian", sans-serif;
   position: absolute;
   width: 1920px;
@@ -350,7 +351,8 @@ h1 {
   align-items: center;
   gap: 9px;
   margin-top: 7px;
-  font-size: 14px;
+  margin-bottom: 12px;
+  font-size: 24px;
   letter-spacing: 0;
 }
 
@@ -370,37 +372,31 @@ h1 {
 
 .kicker {
   color: var(--muted);
-  font: 700 13px / 1.2 var(--text-face);
+  font-weight: 400;
+  font-size: 16px;
   letter-spacing: 0;
 }
 
 .identity h2 {
   display: -webkit-box;
   max-height: 58px;
-  margin: 4px 0;
+  margin: 12px 0;
   overflow: hidden;
   overflow-wrap: anywhere;
-  font: 700 24px / 1.2 var(--text-face);
+  font-weight: 700;
+  font-size: 30px;
   letter-spacing: 0;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
-.challenge {
-  display: block;
-  margin-top: 6px;
-  padding: 6px 9px;
-  border-radius: 7px;
-  background: var(--surface);
-}
-
 .tier-row {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 6px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .tier-row > span {
@@ -422,15 +418,11 @@ h1 {
 .telemetry {
   position: absolute;
   top: 938px;
-  right: 432px;
+  right: 396px;
   left: 648px;
   display: grid;
-  grid-template-columns: 225px 260px minmax(0, 1fr);
+  grid-template-columns: 225px 260px 150px minmax(0, 1fr);
   height: 130px;
-}
-
-.board.golden .telemetry {
-  grid-template-columns: 210px 245px 115px minmax(0, 1fr);
 }
 
 .telemetry > section {
@@ -444,18 +436,18 @@ h1 {
   border-left: 0;
 }
 
-.section-label,
-.section-label > span {
+.section-label {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 7px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 19px;
   letter-spacing: 0;
   white-space: nowrap;
+  margin-bottom: 10px;
 }
 
 .room-value {
@@ -463,13 +455,14 @@ h1 {
   align-items: baseline;
   gap: 10px;
   min-width: 0;
-  margin-top: 5px;
 }
 
 .room-value strong {
   min-width: 0;
   overflow: hidden;
-  font: 600 26px / 1.15 var(--number-face);
+  font-weight: 700;
+  font-size: 30px;
+  font-family: var(--number-face);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
   text-overflow: ellipsis;
@@ -503,12 +496,13 @@ h1 {
   display: flex;
   align-items: baseline;
   gap: 5px;
-  margin-top: 7px;
   line-height: 1;
 }
 
-.metric > strong {
-  font: 600 34px / 1.1 var(--number-face);
+.metric strong {
+  font-weight: 700;
+  font-size: 32px;
+  font-family: var(--number-face);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
 }
@@ -522,7 +516,6 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-top: 5px;
 }
 
 .forecast-item {
@@ -538,39 +531,39 @@ h1 {
   display: block;
   overflow: hidden;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 17px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .forecast-item .metric {
-  margin-top: 2px;
+  margin-top: 6px;
 }
 
 .forecast-item .metric > strong {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .pb-record {
-  margin: 4px 0 6px;
+  margin: 8px 0 3px;
 }
 
 .pb-record-label {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px;
-  margin-bottom: 3px;
-  font-size: 12px;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2px;
+  font-size: 11px;
   font-weight: 600;
-  line-height: 15px;
+  line-height: 12px;
 }
 
 .pb-record-label small {
   color: var(--muted);
-  font: 500 12px var(--number-face);
+  font: 500 11px / 12px var(--number-face);
   font-variant-numeric: tabular-nums;
+  text-align: right;
   white-space: nowrap;
 }
 
@@ -605,51 +598,15 @@ h1 {
   opacity: 0.65;
 }
 
-.utility {
+.clock-display {
   position: absolute;
-  top: 938px;
-  left: 1512px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  width: 384px;
-  height: 130px;
-}
-
-.heart-card {
-  flex: 0 0 128px;
-}
-
-.clock-card {
-  flex: 0 0 248px;
-}
-
-.utility-card {
-  min-width: 0;
-  overflow: hidden;
   padding: 10px 12px;
-  border: 1px solid var(--line);
-  background: var(--surface);
+  top: 938px;
+  right: 24px;
+  width: 248px;
 }
 
-.utility-value {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-top: 12px;
-}
-
-.utility-value strong {
-  font: 600 30px / 1 var(--number-face);
-  font-variant-numeric: tabular-nums;
-}
-
-.utility-value small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.clock-card time {
+.clock-display time {
   display: block;
   margin-top: 9px;
   font: 600 30px / 1 var(--number-face);
@@ -657,11 +614,11 @@ h1 {
   white-space: nowrap;
 }
 
-.clock-card > span {
+.clock-display #current-date {
   display: block;
   margin-top: 8px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   white-space: nowrap;
 }
 
@@ -797,43 +754,33 @@ body.orbit-page {
 }
 
 .board.orbit {
-  --canvas: #201b20;
-  --surface: #342a2e;
-  --muted: #b59d9d;
-  --line: #554046;
-  --accent: #f0b08a;
-  --ink: #fff2e6;
+  --canvas: var(--overlay-canvas, #201b20);
+  --surface: var(--overlay-surface, #342a2e);
+  --muted: var(--overlay-muted, #b59d9d);
+  --line: var(--overlay-line, #554046);
+  --accent: var(--overlay-accent, #f0b08a);
+  --ink: var(--overlay-text, #fff2e6);
 }
 
 .board.orbit .status {
   padding: 10px 12px;
   border-radius: 24px;
-  background: #382a2e;
-}
-
-.board.orbit .challenge {
-  border: 1px solid #795746;
-  background: linear-gradient(115deg, #62433a, #3e2b30);
+  background: var(--overlay-status-background, #382a2e);
 }
 
 .board.orbit .telemetry {
   gap: 8px;
 }
 
-.board.orbit .telemetry > section {
+.board.orbit .telemetry > section,
+.board.orbit .pb-block {
   border: 0;
   border-radius: 12px;
-  background: #30252e;
+  background: var(--overlay-card-background, #30252e);
 }
 
 .board.orbit .telemetry > section:first-child {
-  background: #46323a;
-}
-
-.board.orbit .utility-card {
-  border: 0;
-  border-radius: 12px;
-  background: #30252e;
+  background: var(--overlay-featured-card-background, #46323a);
 }
 
 .board.orbit .corner {
@@ -901,23 +848,23 @@ body.orbit-page {
 /* Runtime states and OBS ------------------------------------------------- */
 
 .board.golden {
-  --accent: #efc777;
-  --line: #514533;
+  --accent: var(--overlay-golden-accent, var(--overlay-accent, #efc777));
+  --line: var(--overlay-golden-line, var(--overlay-line, #514533));
 }
 
 .board.orbit.golden {
-  --accent: #ffe0a1;
-  --surface: #47392e;
+  --accent: var(--overlay-golden-accent, var(--overlay-accent, #ffe0a1));
+  --surface: var(--overlay-golden-surface, var(--overlay-surface, #47392e));
 }
 
 .board.paused .status i {
-  background: #b3b8c3;
+  background: var(--overlay-paused-indicator, #b3b8c3);
   box-shadow: none;
   animation: none;
 }
 
 .board.disconnected .status i {
-  background: #ec8b83;
+  background: var(--overlay-disconnected-indicator, #ec8b83);
   box-shadow: none;
 }
 

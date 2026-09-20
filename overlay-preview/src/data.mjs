@@ -1,6 +1,6 @@
 // Frontends depend only on this versioned presentation DTO, never on credentials or raw CCT internals.
 export function formatTier(value) {
-  if (!value) return "—";
+  if (!value) return "我不到啊";
   const code = value.trim().toLowerCase();
   const tier = /^([hml])([0-3])$/.exec(code);
   if (tier) return `${{ h: "High", m: "Mid", l: "Low" }[tier[1]]} T${tier[2]}`;
@@ -9,7 +9,7 @@ export function formatTier(value) {
   if (standard)
     return `${standard[1][0].toUpperCase() + standard[1].slice(1)} Std`;
   if (code === "standard" || code === "std") return "Std";
-  if (code === "undetermined") return "未定档";
+  if (code === "undetermined") return "Undeterminded";
   return value;
 }
 
