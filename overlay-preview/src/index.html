@@ -93,11 +93,9 @@
             <section class="identity">
               <div class="kicker">在整啥活？</div>
               <h2 id="map-name"></h2>
-              <div class="challenge">
-                <div class="tier-row">
-                  <span>这活多难？</span>
-                  <strong class="tier" id="tier"></strong>
-                </div>
+              <div class="tier-row">
+                <span>这活多难？</span>
+                <strong class="tier" id="tier"></strong>
               </div>
             </section>
           </aside>
@@ -133,15 +131,15 @@
             </section>
 
             <section class="attempt-block">
-              <div class="section-label">炸金多少次了？</div>
+              <div class="section-label">炸金多少回了？</div>
               <div class="metric">
                 <strong id="golden-deaths"></strong>
                 <small>次</small>
               </div>
             </section>
 
-            <section class="pb-block" id="golden-pb-block" hidden>
-              <div class="section-label"><span>揣金最远到哪儿？</span></div>
+            <section class="pb-block" id="golden-pb-block">
+              <div class="section-label">揣金最远到哪儿？</div>
               <div class="pb-record">
                 <div class="pb-record-label">
                   <span>历史最远</span>
@@ -169,16 +167,11 @@
             </section>
           </footer>
 
-          <div class="utility">
-            <section class="utility-card heart-card" id="heart-module" hidden>
-              <div class="section-label">心动值</div>
-            </section>
-            <section class="utility-card clock-card">
-              <div class="section-label">现在几点？</div>
-              <time id="current-time">--:--:--</time>
-              <span id="current-date"></span>
-            </section>
-          </div>
+          <section class="clock-display">
+            <div class="section-label">现在几点？</div>
+            <time id="current-time">--:--:--</time>
+            <span id="current-date"></span>
+          </section>
 
           <div class="bottomline">
             <span id="theme-signature"></span>
