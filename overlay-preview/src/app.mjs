@@ -195,6 +195,10 @@ function renderStatus() {
   board.classList.toggle("paused", data.live.paused);
   board.classList.toggle("disconnected", !data.connected);
 
+  board.querySelector(".status").dataset.modeLabel = data.live.holdingGolden
+    ? "带金"
+    : "练习";
+
   setText(
     "status",
     !data.connected
@@ -216,7 +220,7 @@ function renderMapDetails() {
 
   const tierLabel = formatTier(data.catalog.tier);
   setText("tier", tierLabel);
-  getElement("tier").classList.toggle("tier-long", tierLabel.length > 4);
+  getElement("tier").classList.toggle("tier-long", tierLabel.length >= 12);
 }
 
 function renderGoldenPb() {

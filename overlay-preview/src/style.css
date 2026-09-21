@@ -155,7 +155,7 @@ h1 {
   --surface: var(--overlay-surface, #101f2e);
   --canvas: var(--overlay-canvas, #0a1725);
   --text-face: var(--overlay-text-font-family, "DengXian", "Microsoft YaHei", sans-serif);
-  --number-face: "Segoe UI", "DengXian", sans-serif;
+  --number-face: var(--overlay-number-font-family, "Segoe UI", "DengXian", sans-serif);
   position: absolute;
   width: 1920px;
   height: 1080px;
@@ -342,17 +342,16 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 248px;
-  height: 236px;
   overflow: hidden;
+  padding: 10px 4px;
 }
 
 .status {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin-top: 7px;
-  margin-bottom: 12px;
-  font-size: 24px;
+  margin: 8px 10px 10px;
+  font-size: 36px;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -372,8 +371,8 @@ h1 {
 
 .kicker {
   color: var(--muted);
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 28px;
   letter-spacing: 0;
 }
 
@@ -383,8 +382,8 @@ h1 {
   margin: 12px 0;
   overflow: hidden;
   overflow-wrap: anywhere;
-  font-weight: 700;
-  font-size: 30px;
+  font-weight: 1000;
+  font-size: 38px;
   letter-spacing: 0;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -396,7 +395,8 @@ h1 {
   justify-content: flex-start;
   gap: 6px;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .tier-row > span {
@@ -405,30 +405,31 @@ h1 {
 
 .tier {
   color: var(--accent);
-  font: 600 18px / 1 var(--number-face);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
   white-space: nowrap;
+  padding: 0px 6px;
 }
 
 .tier.tier-long {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .telemetry {
   position: absolute;
-  top: 938px;
+  top: 930px;
   right: 396px;
-  left: 648px;
+  left: 570px;
   display: grid;
-  grid-template-columns: 225px 260px 150px minmax(0, 1fr);
+  grid-template-columns: 225px 260px 174px minmax(0, 1fr);
   height: 130px;
 }
 
 .telemetry > section {
   min-width: 0;
   overflow: hidden;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border-left: 1px solid var(--line);
 }
 
@@ -442,9 +443,8 @@ h1 {
   justify-content: space-between;
   gap: 7px;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
-  line-height: 19px;
   letter-spacing: 0;
   white-space: nowrap;
   margin-bottom: 10px;
@@ -472,7 +472,8 @@ h1 {
 .room-value > span {
   flex-shrink: 0;
   color: var(--muted);
-  font: 600 14px var(--number-face);
+  font-family: var(--number-face);
+  font-size: 16px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
 }
@@ -513,26 +514,19 @@ h1 {
 }
 
 .forecast-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .forecast-item {
   min-width: 0;
 }
 
-.forecast-item + .forecast-item {
-  padding-left: 12px;
-  border-left: 1px solid var(--line);
-}
-
 .forecast-item > span {
   display: block;
   overflow: hidden;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -545,23 +539,30 @@ h1 {
   font-size: 24px;
 }
 
+.attempt-block .section-label {
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.2;
+}
+
 .pb-record {
   margin: 8px 0 3px;
 }
 
 .pb-record-label {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 0;
+  margin-top: 0px;
   margin-bottom: 2px;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 12px;
 }
 
 .pb-record-label small {
   color: var(--muted);
-  font: 500 11px / 12px var(--number-face);
+  font-family: var(--number-face);
+  font-size: 16px;
   font-variant-numeric: tabular-nums;
   text-align: right;
   white-space: nowrap;
@@ -601,24 +602,25 @@ h1 {
 .clock-display {
   position: absolute;
   padding: 10px 12px;
-  top: 938px;
+  top: 930px;
   right: 24px;
   width: 248px;
 }
 
 .clock-display time {
   display: block;
-  margin-top: 9px;
-  font: 600 30px / 1 var(--number-face);
+  margin-top: -8px;
+  font-weight: 700;
+  font-size: 34px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
 .clock-display #current-date {
   display: block;
-  margin-top: 8px;
+  margin-top: 2px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 18px;
   white-space: nowrap;
 }
 
@@ -866,6 +868,223 @@ body.orbit-page {
 .board.disconnected .status i {
   background: var(--overlay-disconnected-indicator, #ec8b83);
   box-shadow: none;
+}
+
+/* APEX warm cards -------------------------------------------------------- */
+
+.board:not(.orbit) {
+  --canvas: var(--overlay-canvas, transparent);
+  --surface: var(--overlay-surface, transparent);
+  --ink: var(--overlay-text-face, #352b46);
+  --muted: var(--overlay-muted, #635269);
+  --accent: var(--overlay-accent, #79608d);
+  --line: var(--overlay-line, rgb(82 58 85 / 18%));
+  --golden-accent: var(--overlay-golden-accent, #a46c19);
+  --golden-line: var(--overlay-golden-line, rgb(149 96 15 / 20%));
+  --label-face: var(--overlay-label-font-family, "PingFang SC", "Microsoft YaHei", sans-serif);
+  --card-background: var(
+    --overlay-card-background,
+    linear-gradient(135deg, rgb(255 247 232 / 92%), rgb(255 239 232 / 88%))
+  );
+  --card-edge: rgb(255 255 255 / 40%);
+  --mode-badge-background: rgb(121 96 141 / 13%);
+  --mode-badge-text: #6b507e;
+  --mode-header-background: transparent;
+  --mode-status-text: var(--accent);
+}
+
+/* Hide dividers without changing their space or the progress-track color. */
+.board:not(.orbit) .telemetry > section,
+.board:not(.orbit) .forecast-item + .forecast-item {
+  border-left-color: transparent;
+}
+
+.board:not(.orbit) .progress,
+.board:not(.orbit) .progress i {
+  border-radius: 4px;
+}
+
+/* Keep the existing line boxes while softening supporting text. */
+.board:not(.orbit) .section-label {
+  font-family: var(--label-face);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.board:not(.orbit) .attempt-block .section-label {
+  line-height: 33.6px;
+}
+
+.board:not(.orbit) .kicker {
+  font-family: var(--label-face);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.board:not(.orbit) .tier-row {
+  font-family: var(--label-face);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.board:not(.orbit) .tier {
+  background: var(--mode-badge-background);
+  border-radius: 4px;
+  box-shadow: 0 0 0 3px var(--mode-badge-background);
+}
+
+.board:not(.orbit) .forecast-item > span,
+.board:not(.orbit) .pb-record-label {
+  font-family: var(--label-face);
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.board:not(.orbit) .clock-display #current-date {
+  font-family: var(--label-face);
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.board:not(.orbit) .identity h2 {
+  font-size: 28px;
+  line-height: 29px;
+  min-height: 38px;
+}
+
+/* Paint card spacing independently of the content grid and its padding. */
+.board:not(.orbit) .rail,
+.board:not(.orbit) .clock-display,
+.board:not(.orbit) .telemetry > section {
+  isolation: isolate;
+}
+
+.board:not(.orbit) .telemetry > section {
+  position: relative;
+}
+
+.board:not(.orbit) .rail::before,
+.board:not(.orbit) .clock-display::before,
+.board:not(.orbit) .telemetry > section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 4px;
+  border-radius: 14px;
+  background: var(--card-background);
+  box-shadow: inset 0 0 0 1px var(--card-edge);
+  pointer-events: none;
+}
+
+.board:not(.orbit) .rail {
+  overflow: visible;
+}
+
+.board:not(.orbit) .rail::before {
+  inset: 0 -8px;
+}
+
+.board:not(.orbit) .clock-display::before {
+  inset: 0;
+  height: 130px;
+}
+
+.board:not(.orbit) .status {
+  position: relative;
+  isolation: isolate;
+  color: var(--mode-status-text);
+}
+
+.board:not(.orbit) .status i {
+  box-shadow: none;
+}
+
+.board:not(.orbit) .status::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -6px -8px;
+  border-radius: 14px 14px 10px 10px;
+  background: var(--mode-header-background);
+  pointer-events: none;
+}
+
+.board:not(.orbit) .status::after {
+  content: attr(data-mode-label);
+  margin-left: auto;
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: var(--mode-badge-background);
+  color: var(--mode-badge-text);
+  font: 600 20px / 24px var(--label-face);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.board:not(.orbit).golden {
+  --accent: var(--golden-accent);
+  --line: var(--golden-line);
+}
+
+.board:not(.orbit).golden:not(.disconnected) {
+  --ink: var(--overlay-golden-text, #493421);
+  --muted: var(--overlay-golden-muted, #6c5035);
+  --card-background: var(
+    --overlay-golden-card-background,
+    linear-gradient(135deg, rgb(255 237 196 / 96%), rgb(255 223 158 / 94%))
+  );
+  --card-edge: rgb(168 111 28 / 58%);
+  --mode-header-background: linear-gradient(110deg, #604253, #795049);
+  --mode-status-text: #fff0ca;
+  --mode-badge-background: #ffe09a;
+  --mode-badge-text: #66441b;
+}
+
+.board:not(.orbit).golden:not(.disconnected) .pb-block::before {
+  background: var(
+    --overlay-golden-pb-background,
+    linear-gradient(125deg, rgb(255 226 163 / 98%), rgb(246 207 123 / 96%))
+  );
+}
+
+.board:not(.orbit).golden:not(.paused):not(.disconnected) .status i {
+  border-radius: 1px;
+  transform: rotate(45deg);
+  background: #ffe09a;
+  box-shadow: 0 0 0 4px rgb(255 224 154 / 16%);
+  animation: none;
+}
+
+.board:not(.orbit).golden:not(.disconnected) .progress i {
+  background: linear-gradient(90deg, #99621d, #c68c24);
+}
+
+.board:not(.orbit).paused:not(.disconnected) {
+  --mode-header-background: #e3dce4;
+  --mode-status-text: #665568;
+}
+
+.board:not(.orbit).paused .status i {
+  background: var(--overlay-paused-indicator, #796b7e);
+}
+
+.board:not(.orbit).disconnected {
+  --accent: var(--overlay-disconnected-indicator, #a34550);
+  --mode-header-background: #8a4d51;
+  --mode-status-text: #fff2ed;
+}
+
+.board:not(.orbit).disconnected .status i {
+  background: var(--overlay-disconnected-indicator, #a34550);
+}
+
+.board:not(.orbit) .status:not([data-mode-label])::after,
+.board:not(.orbit).disconnected .status::after {
+  content: none;
 }
 
 .value-change {

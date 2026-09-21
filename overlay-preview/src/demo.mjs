@@ -9,7 +9,7 @@ export function demoSnapshot() {
       mapNameEn: "Between the Prisms",
       campaign: "演示地图包",
       challenge: "FC",
-      tier: "T3",
+      tier: "Undetermined",
       verified: false,
     },
     live: { room: "Room-3", holdingGolden: false, paused: false },
