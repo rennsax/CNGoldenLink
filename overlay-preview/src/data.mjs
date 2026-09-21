@@ -3,7 +3,7 @@ export function formatTier(value) {
   if (!value) return "我不到啊";
   const code = value.trim().toLowerCase();
   const tier = /^([hml])([0-3])$/.exec(code);
-  if (tier) return `${{ h: "High", m: "Mid", l: "Low" }[tier[1]]} T${tier[2]}`;
+  if (tier) return `${{ h: "High", m: "Mid", l: "Low" }[tier[1]]} Tier ${tier[2]}`;
   if (/^t(?:-1|[0-7])$/.test(code)) return code.toUpperCase();
   const standard = /^(high|mid|low)(?:-|\s+)(?:std|standard)$/.exec(code);
   if (standard)
